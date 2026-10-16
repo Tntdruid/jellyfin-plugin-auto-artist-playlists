@@ -1,0 +1,143 @@
+# Smart Play List for Jellyfin
+
+🇬🇧 [English](#english) · 🇩🇰 [Dansk](#dansk)
+
+---
+
+## English
+
+A Jellyfin plugin that remembers the songs you actually listen to.
+
+When you have played at least **90 %** of a song (configurable):
+
+1. ❤️ The song is marked as a **favorite** for you.
+2. 🎵 It is added to a **private playlist named after the artist**, e.g. `Katy Perry`. The playlist is created if it doesn't exist, and songs are never added twice.
+3. ❤️ The artist playlist itself is marked as a favorite, so all of them show up under *Favorites*.
+
+The main artist is the first track artist, so `Katy Perry feat. Someone` goes to `Katy Perry`. If a track has no artist, the album artist is used. Playlists are private to each user.
+
+Works with any client that reports playback to the server (web, Jellyfin Media Player / Desktop, Finamp, Android, iOS, …).
+
+### Requirements
+
+- Jellyfin **12.2** or newer
+
+### Installation
+
+**From the plugin repository (recommended)**
+
+1. In Jellyfin go to **Dashboard → Plugins → Repositories** (or *Catalog → ⚙️*) and add:
+   ```
+   https://raw.githubusercontent.com/Tntdruid/jellyfin-plugin-smart-play-list/main/manifest.json
+   ```
+2. Open the **Catalog**, find **Smart Play List** and install it.
+3. Restart Jellyfin.
+
+**Manual**
+
+1. Download the latest `.zip` from [Releases](https://github.com/Tntdruid/jellyfin-plugin-smart-play-list/releases).
+2. Unzip it into a folder named `Smart Play List_<version>` inside Jellyfin's `plugins` folder:
+   - Windows: `C:\ProgramData\Jellyfin\Server\plugins\`
+   - Linux: `/var/lib/jellyfin/plugins/`
+   - Docker: `/config/plugins/`
+3. Restart Jellyfin.
+
+### Settings
+
+**Dashboard → Plugins → Smart Play List**
+
+| Setting | Default | Description |
+|---|---|---|
+| Threshold (%) | 90 | How much of a song must be played before it counts |
+| Mark the song with a heart | On | Marks the song as favorite |
+| Mark the artist playlist with a heart | On | Marks the artist playlist as favorite |
+| Playlist name prefix | *(empty)* | E.g. `❤️ ` gives `❤️ Katy Perry` |
+| Users | All | Limit the plugin to selected users |
+
+The settings page is available in English and Danish and follows your Jellyfin display language.
+
+### Tips
+
+- Desktop and web clients may not show a newly created playlist or heart right away. Press **F5** to reload.
+- The plugin writes to the Jellyfin log with the prefix `Smart Play List:`, which is useful when reporting issues.
+
+### Building
+
+```bash
+dotnet publish Jellyfin.Plugin.SmartPlayList -c Release -o out
+```
+
+Copy `out/Jellyfin.Plugin.SmartPlayList.dll` into the plugin folder.
+
+---
+
+## Dansk
+
+Et Jellyfin-plugin, der husker de sange, du faktisk hører.
+
+Når du har hørt mindst **90 %** af en sang (kan ændres):
+
+1. ❤️ Sangen markeres som **favorit** for dig.
+2. 🎵 Den tilføjes til en **privat playliste med kunstnerens navn**, f.eks. `Katy Perry`. Playlisten oprettes, hvis den ikke findes, og sange tilføjes aldrig to gange.
+3. ❤️ Selve kunstner-playlisten markeres som favorit, så de alle samles under *Favoritter*.
+
+Hovedkunstneren er den første kunstner på nummeret, så `Katy Perry feat. Nogen` havner på `Katy Perry`. Har nummeret ingen kunstner, bruges albumkunstneren. Playlisterne er private for hver bruger.
+
+Virker med alle klienter, der rapporterer afspilning til serveren (web, Jellyfin Media Player / Desktop, Finamp, Android, iOS, …).
+
+### Krav
+
+- Jellyfin **12.2** eller nyere
+
+### Installation
+
+**Fra plugin-repository (anbefalet)**
+
+1. Gå til **Dashboard → Plugins → Repositories** (eller *Katalog → ⚙️*) i Jellyfin og tilføj:
+   ```
+   https://raw.githubusercontent.com/Tntdruid/jellyfin-plugin-smart-play-list/main/manifest.json
+   ```
+2. Åbn **Katalog**, find **Smart Play List** og installér det.
+3. Genstart Jellyfin.
+
+**Manuelt**
+
+1. Hent den nyeste `.zip` under [Releases](https://github.com/Tntdruid/jellyfin-plugin-smart-play-list/releases).
+2. Pak den ud i en mappe med navnet `Smart Play List_<version>` i Jellyfins `plugins`-mappe:
+   - Windows: `C:\ProgramData\Jellyfin\Server\plugins\`
+   - Linux: `/var/lib/jellyfin/plugins/`
+   - Docker: `/config/plugins/`
+3. Genstart Jellyfin.
+
+### Indstillinger
+
+**Dashboard → Plugins → Smart Play List**
+
+| Indstilling | Standard | Beskrivelse |
+|---|---|---|
+| Grænse (%) | 90 | Hvor meget af sangen der skal høres, før den tæller |
+| Markér sangen med hjerte | Til | Markerer sangen som favorit |
+| Markér kunstner-playlisten med hjerte | Til | Markerer kunstner-playlisten som favorit |
+| Præfiks på playlistenavn | *(tom)* | F.eks. `❤️ ` giver `❤️ Katy Perry` |
+| Brugere | Alle | Begræns pluginet til udvalgte brugere |
+
+Indstillingssiden findes på dansk og engelsk og følger dit sprog i Jellyfin.
+
+### Tips
+
+- Desktop- og web-klienter viser ikke altid en ny playliste eller et nyt hjerte med det samme. Tryk **F5** for at genindlæse.
+- Pluginet skriver i Jellyfins log med præfikset `Smart Play List:`, hvilket er nyttigt, hvis du vil rapportere en fejl.
+
+### Byg selv
+
+```bash
+dotnet publish Jellyfin.Plugin.SmartPlayList -c Release -o out
+```
+
+Kopiér `out/Jellyfin.Plugin.SmartPlayList.dll` ind i plugin-mappen.
+
+---
+
+## License / Licens
+
+[GPL-3.0](LICENSE)

@@ -1,0 +1,12 @@
+[
+  {
+    "guid": "4ada4936-7154-478d-80f8-99d18faaebc2",
+    "name": "Smart Play List",
+    "description": "Adds songs you have listened to into a private playlist per artist and marks them with a heart.",
+    "overview": "When a song has been played at least 90%, it is marked as favorite and added to a private playlist named after the artist.",
+    "owner": "Tntdruid",
+    "category": "General",
+    "imageUrl": "",
+    "versions": []
+  }
+]

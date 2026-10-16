@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Smart Play List</title>
+</head>
+<body>
+    <div id="SmartPlayListConfigPage" data-role="page" class="page type-interior pluginConfigurationPage" data-require="emby-input,emby-button,emby-checkbox">
+        <div data-role="content">
+            <div class="content-primary">
+                <form id="SmartPlayListConfigForm">
+                    <h2>Smart Play List</h2>
+                    <p data-i18n="intro"></p>
+
+                    <div class="inputContainer">
+                        <label class="inputLabel inputLabelUnfocused" for="ThresholdPercent" data-i18n="threshold"></label>
+                        <input id="ThresholdPercent" name="ThresholdPercent" type="number" is="emby-input" min="1" max="100" />
+                        <div class="fieldDescription" data-i18n="thresholdHelp"></div>
+                    </div>
+
+                    <div class="checkboxContainer checkboxContainer-withDescription">
+                        <label class="emby-checkbox-label">
+                            <input id="MarkAsFavorite" name="MarkAsFavorite" type="checkbox" is="emby-checkbox" />
+                            <span data-i18n="markSong"></span>
+                        </label>
+                    </div>
+
+                    <div class="checkboxContainer checkboxContainer-withDescription">
+                        <label class="emby-checkbox-label">
+                            <input id="MarkPlaylistAsFavorite" name="MarkPlaylistAsFavorite" type="checkbox" is="emby-checkbox" />
+                            <span data-i18n="markPlaylist"></span>
+                        </label>
+                    </div>
+
+                    <div class="inputContainer">
+                        <label class="inputLabel inputLabelUnfocused" for="PlaylistPrefix" data-i18n="prefix"></label>
+                        <input id="PlaylistPrefix" name="PlaylistPrefix" type="text" is="emby-input" />
+                        <div class="fieldDescription" data-i18n="prefixHelp"></div>
+                    </div>
+
+                    <h3 data-i18n="users"></h3>
+                    <div class="fieldDescription" data-i18n="usersHelp"></div>
+                    <div id="UserList"></div>
+
+                    <div>
+                        <button is="emby-button" type="submit" class="raised button-submit block emby-button">
+                            <span data-i18n="save"></span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <script type="text/javascript">
+            var SmartPlayListConfig = {
+                pluginUniqueId: '4ada4936-7154-478d-80f8-99d18faaebc2'
+            };
+
+            // Add a language by adding a block here; the key is the two-letter language code.
+            var SmartPlayListStrings = {
+                en: {
+                    intro: 'When a song has been played at least the chosen percentage, it is added to a private playlist named after the artist and marked with a heart.',
+                    threshold: 'Threshold (%)',
+                    thresholdHelp: 'How much of the song must be played before it counts. Default is 90.',
+                    markSong: 'Mark the song with a heart (favorite)',
+                    markPlaylist: 'Mark the artist playlist with a heart (favorite)',
+                    prefix: 'Playlist name prefix',
+                    prefixHelp: 'Optional, e.g. "❤️ " gives "❤️ Katy Perry". Empty gives just "Katy Perry".',
+                    users: 'Users',
+                    usersHelp: 'If none are selected, the plugin applies to all users.',
+                    save: 'Save'
+                },
+                da: {
+                    intro: 'Når en sang er hørt mindst den valgte procentdel, tilføjes den til en privat playliste med kunstnerens navn og markeres med et hjerte.',
+                    threshold: 'Grænse (%)',
+                    thresholdHelp: 'Hvor stor en del af sangen skal afspilles, før den tæller. Standard er 90.',
+                    markSong: 'Markér sangen med hjerte (favorit)',
+                    markPlaylist: 'Markér kunstner-playlisten med hjerte (favorit)',
+                    prefix: 'Præfiks på playlistenavn',
+                    prefixHelp: 'Valgfrit, f.eks. "❤️ " giver "❤️ Katy Perry". Tomt giver bare "Katy Perry".',
+                    users: 'Brugere',
+                    usersHelp: 'Hvis ingen er valgt, gælder pluginet for alle brugere.',
+                    save: 'Gem'
+                }
+            };
+
+            function getStrings() {
+                // Jellyfin sets the html lang attribute to the user's display language.
+                var lang = (document.documentElement.getAttribute('lang') || navigator.language || 'en')
+                    .toLowerCase().split('-')[0];
+                return SmartPlayListStrings[lang] || SmartPlayListStrings.en;
+            }
+
+            function translatePage(page) {
+                var strings = getStrings();
+                page.querySelectorAll('[data-i18n]').forEach(function (el) {
+                    el.textContent = strings[el.getAttribute('data-i18n')] || SmartPlayListStrings.en[el.getAttribute('data-i18n')];
+                });
+            }
+
+            function normalizeId(id) {
+                return (id || '').replace(/-/g, '').toLowerCase();
+            }
+
+            document.querySelector('#SmartPlayListConfigPage')
+                .addEventListener('pageshow', function () {
+                    var page = this;
+                    translatePage(page);
+                    Dashboard.showLoadingMsg();
+                    Promise.all([
+                        ApiClient.getPluginConfiguration(SmartPlayListConfig.pluginUniqueId),
+                        ApiClient.getUsers()
+                    ]).then(function (results) {
+                        var config = results[0];
+                        var users = results[1];
+                        var enabled = (config.EnabledUserIds || []).map(normalizeId);
+
+                        page.querySelector('#ThresholdPercent').value = config.ThresholdPercent;
+                        page.querySelector('#MarkAsFavorite').checked = config.MarkAsFavorite;
+                        page.querySelector('#MarkPlaylistAsFavorite').checked = config.MarkPlaylistAsFavorite;
+                        page.querySelector('#PlaylistPrefix').value = config.PlaylistPrefix || '';
+
+                        var list = page.querySelector('#UserList');
+                        list.innerHTML = '';
+                        users.forEach(function (user) {
+                            var label = document.createElement('label');
+                            label.className = 'emby-checkbox-label';
+                            var input = document.createElement('input');
+                            input.type = 'checkbox';
+                            input.setAttribute('is', 'emby-checkbox');
+                            input.className = 'chkUser';
+                            input.dataset.userId = user.Id;
+                            input.checked = enabled.indexOf(normalizeId(user.Id)) !== -1;
+                            var span = document.createElement('span');
+                            span.textContent = user.Name;
+                            label.appendChild(input);
+                            label.appendChild(span);
+                            var container = document.createElement('div');
+                            container.className = 'checkboxContainer';
+                            container.appendChild(label);
+                            list.appendChild(container);
+                        });
+
+                        Dashboard.hideLoadingMsg();
+                    });
+                });
+
+            document.querySelector('#SmartPlayListConfigForm')
+                .addEventListener('submit', function (e) {
+                    var form = this;
+                    Dashboard.showLoadingMsg();
+                    ApiClient.getPluginConfiguration(SmartPlayListConfig.pluginUniqueId).then(function (config) {
+                        var threshold = parseInt(form.querySelector('#ThresholdPercent').value, 10);
+                        config.ThresholdPercent = isNaN(threshold) ? 90 : Math.min(100, Math.max(1, threshold));
+                        config.MarkAsFavorite = form.querySelector('#MarkAsFavorite').checked;
+                        config.MarkPlaylistAsFavorite = form.querySelector('#MarkPlaylistAsFavorite').checked;
+                        config.PlaylistPrefix = form.querySelector('#PlaylistPrefix').value;
+                        config.EnabledUserIds = Array.prototype.map.call(
+                            form.querySelectorAll('.chkUser:checked'),
+                            function (el) { return el.dataset.userId; });
+
+                        ApiClient.updatePluginConfiguration(SmartPlayListConfig.pluginUniqueId, config).then(function (result) {
+                            Dashboard.processPluginConfigurationUpdateResult(result);
+                        });
+                    });
+
+                    e.preventDefault();
+                    return false;
+                });
+        </script>
+    </div>
+</body>
+</html>
