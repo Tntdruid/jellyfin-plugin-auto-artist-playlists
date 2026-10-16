@@ -6,7 +6,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Jellyfin.Data.Enums;
 using Jellyfin.Database.Implementations.Entities;
-using Jellyfin.Plugin.SmartPlayList.Configuration;
+using Jellyfin.Plugin.AutoArtistPlaylists.Configuration;
 using MediaBrowser.Controller.Entities;
 using MediaBrowser.Controller.Entities.Audio;
 using MediaBrowser.Controller.Library;
@@ -17,7 +17,7 @@ using MediaBrowser.Model.Playlists;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 
-namespace Jellyfin.Plugin.SmartPlayList;
+namespace Jellyfin.Plugin.AutoArtistPlaylists;
 
 /// <summary>
 /// Listens for playback and handles songs that have been played past the threshold.
@@ -113,7 +113,7 @@ public sealed class PlaybackListener : IHostedService, IDisposable
                 }
                 catch (Exception ex)
                 {
-                    _logger.LogError(ex, "Smart Play List: failed to mark {Song} as favorite for {User}", song.Name, user.Username);
+                    _logger.LogError(ex, "Auto Artist Playlists: failed to mark {Song} as favorite for {User}", song.Name, user.Username);
                 }
             }
 
@@ -171,7 +171,7 @@ public sealed class PlaybackListener : IHostedService, IDisposable
             var artist = GetMainArtist(song);
             if (artist is null)
             {
-                _logger.LogDebug("Smart Play List: {Song} has no artist, skipping playlist", song.Name);
+                _logger.LogDebug("Auto Artist Playlists: {Song} has no artist, skipping playlist", song.Name);
                 return;
             }
 
@@ -189,7 +189,7 @@ public sealed class PlaybackListener : IHostedService, IDisposable
         }
         catch (Exception ex)
         {
-            _logger.LogError(ex, "Smart Play List: failed to handle {Song} for {User}", song.Name, user.Username);
+            _logger.LogError(ex, "Auto Artist Playlists: failed to handle {Song} for {User}", song.Name, user.Username);
         }
     }
 
@@ -203,7 +203,7 @@ public sealed class PlaybackListener : IHostedService, IDisposable
 
         data.IsFavorite = true;
         _userDataManager.SaveUserData(user, item, data, UserDataSaveReason.UpdateUserRating, CancellationToken.None);
-        _logger.LogInformation("Smart Play List: marked {Item} as favorite for {User}", item.Name, user.Username);
+        _logger.LogInformation("Auto Artist Playlists: marked {Item} as favorite for {User}", item.Name, user.Username);
     }
 
     private async Task AddToArtistPlaylistAsync(User user, Audio song, string playlistName)
@@ -241,7 +241,7 @@ public sealed class PlaybackListener : IHostedService, IDisposable
                 Public = false
             }).ConfigureAwait(false);
 
-            _logger.LogInformation("Smart Play List: created playlist {Playlist} ({PlaylistId}) for {User} with {Song}", playlistName, result.Id, user.Username, song.Name);
+            _logger.LogInformation("Auto Artist Playlists: created playlist {Playlist} ({PlaylistId}) for {User} with {Song}", playlistName, result.Id, user.Username, song.Name);
             return Guid.TryParse(result.Id, out var newId) ? _libraryManager.GetItemById(newId) : null;
         }
 
@@ -251,7 +251,7 @@ public sealed class PlaybackListener : IHostedService, IDisposable
         }
 
         await _playlistManager.AddItemToPlaylistAsync(playlist.Id, [song.Id], null, user.Id).ConfigureAwait(false);
-        _logger.LogInformation("Smart Play List: added {Song} to {Playlist} ({PlaylistId}, {Path}) for {User}", song.Name, playlistName, playlist.Id.ToString("N"), playlist.Path, user.Username);
+        _logger.LogInformation("Auto Artist Playlists: added {Song} to {Playlist} ({PlaylistId}, {Path}) for {User}", song.Name, playlistName, playlist.Id.ToString("N"), playlist.Path, user.Username);
         return playlist;
     }
 

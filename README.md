@@ -1,4 +1,4 @@
-# Smart Play List for Jellyfin
+# Auto Artist Playlists for Jellyfin
 
 🇬🇧 [English](#english) · 🇩🇰 [Dansk](#dansk)
 
@@ -28,23 +28,27 @@ Works with any client that reports playback to the server (web, Jellyfin Media P
 
 1. In Jellyfin go to **Dashboard → Plugins → Repositories** (or *Catalog → ⚙️*) and add:
    ```
-   https://raw.githubusercontent.com/Tntdruid/jellyfin-plugin-smart-play-list/main/manifest.json
+   https://raw.githubusercontent.com/Tntdruid/jellyfin-plugin-auto-artist-playlists/main/manifest.json
    ```
-2. Open the **Catalog**, find **Smart Play List** and install it.
+2. Open the **Catalog**, find **Auto Artist Playlists** and install it.
 3. Restart Jellyfin.
 
 **Manual**
 
-1. Download the latest `.zip` from [Releases](https://github.com/Tntdruid/jellyfin-plugin-smart-play-list/releases).
-2. Unzip it into a folder named `Smart Play List_<version>` inside Jellyfin's `plugins` folder:
+1. Download the latest `.zip` from [Releases](https://github.com/Tntdruid/jellyfin-plugin-auto-artist-playlists/releases).
+2. Unzip it into a folder named `Auto Artist Playlists_<version>` inside Jellyfin's `plugins` folder:
    - Windows: `C:\ProgramData\Jellyfin\Server\plugins\`
    - Linux: `/var/lib/jellyfin/plugins/`
    - Docker: `/config/plugins/`
 3. Restart Jellyfin.
 
+### Upgrading from "Smart Play List"
+
+Version 1.1 renamed the plugin from *Smart Play List* to *Auto Artist Playlists*. Your settings and playlists are kept. If you installed 1.0 manually, delete the old `Smart Play List_1.0.0.0` folder from `plugins` before installing 1.1.
+
 ### Settings
 
-**Dashboard → Plugins → Smart Play List**
+**Dashboard → Plugins → Auto Artist Playlists**
 
 | Setting | Default | Description |
 |---|---|---|
@@ -59,15 +63,15 @@ The settings page is available in English and Danish and follows your Jellyfin d
 ### Tips
 
 - Desktop and web clients may not show a newly created playlist or heart right away. Press **F5** to reload.
-- The plugin writes to the Jellyfin log with the prefix `Smart Play List:`, which is useful when reporting issues.
+- The plugin writes to the Jellyfin log with the prefix `Auto Artist Playlists:`, which is useful when reporting issues.
 
 ### Building
 
 ```bash
-dotnet publish Jellyfin.Plugin.SmartPlayList -c Release -o out
+dotnet publish Jellyfin.Plugin.AutoArtistPlaylists -c Release -o out
 ```
 
-Copy `out/Jellyfin.Plugin.SmartPlayList.dll` into the plugin folder.
+Copy `out/Jellyfin.Plugin.AutoArtistPlaylists.dll` into the plugin folder.
 
 ---
 
@@ -95,23 +99,27 @@ Virker med alle klienter, der rapporterer afspilning til serveren (web, Jellyfin
 
 1. Gå til **Dashboard → Plugins → Repositories** (eller *Katalog → ⚙️*) i Jellyfin og tilføj:
    ```
-   https://raw.githubusercontent.com/Tntdruid/jellyfin-plugin-smart-play-list/main/manifest.json
+   https://raw.githubusercontent.com/Tntdruid/jellyfin-plugin-auto-artist-playlists/main/manifest.json
    ```
-2. Åbn **Katalog**, find **Smart Play List** og installér det.
+2. Åbn **Katalog**, find **Auto Artist Playlists** og installér det.
 3. Genstart Jellyfin.
 
 **Manuelt**
 
-1. Hent den nyeste `.zip` under [Releases](https://github.com/Tntdruid/jellyfin-plugin-smart-play-list/releases).
-2. Pak den ud i en mappe med navnet `Smart Play List_<version>` i Jellyfins `plugins`-mappe:
+1. Hent den nyeste `.zip` under [Releases](https://github.com/Tntdruid/jellyfin-plugin-auto-artist-playlists/releases).
+2. Pak den ud i en mappe med navnet `Auto Artist Playlists_<version>` i Jellyfins `plugins`-mappe:
    - Windows: `C:\ProgramData\Jellyfin\Server\plugins\`
    - Linux: `/var/lib/jellyfin/plugins/`
    - Docker: `/config/plugins/`
 3. Genstart Jellyfin.
 
+### Opgradering fra "Smart Play List"
+
+I version 1.1 skiftede pluginet navn fra *Smart Play List* til *Auto Artist Playlists*. Dine indstillinger og playlister bevares. Har du installeret 1.0 manuelt, så slet den gamle mappe `Smart Play List_1.0.0.0` i `plugins`, før du installerer 1.1.
+
 ### Indstillinger
 
-**Dashboard → Plugins → Smart Play List**
+**Dashboard → Plugins → Auto Artist Playlists**
 
 | Indstilling | Standard | Beskrivelse |
 |---|---|---|
@@ -126,15 +134,15 @@ Indstillingssiden findes på dansk og engelsk og følger dit sprog i Jellyfin.
 ### Tips
 
 - Desktop- og web-klienter viser ikke altid en ny playliste eller et nyt hjerte med det samme. Tryk **F5** for at genindlæse.
-- Pluginet skriver i Jellyfins log med præfikset `Smart Play List:`, hvilket er nyttigt, hvis du vil rapportere en fejl.
+- Pluginet skriver i Jellyfins log med præfikset `Auto Artist Playlists:`, hvilket er nyttigt, hvis du vil rapportere en fejl.
 
 ### Byg selv
 
 ```bash
-dotnet publish Jellyfin.Plugin.SmartPlayList -c Release -o out
+dotnet publish Jellyfin.Plugin.AutoArtistPlaylists -c Release -o out
 ```
 
-Kopiér `out/Jellyfin.Plugin.SmartPlayList.dll` ind i plugin-mappen.
+Kopiér `out/Jellyfin.Plugin.AutoArtistPlaylists.dll` ind i plugin-mappen.
 
 ---
 

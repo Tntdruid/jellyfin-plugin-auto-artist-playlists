@@ -32,13 +32,13 @@ jobs:
 
       - name: Build
         run: |
-          dotnet publish Jellyfin.Plugin.SmartPlayList -c Release -o out \
+          dotnet publish Jellyfin.Plugin.AutoArtistPlaylists -c Release -o out \
             -p:Version="$VERSION" -p:AssemblyVersion="$VERSION" -p:FileVersion="$VERSION"
 
       - name: Package
         run: |
-          ZIP="smart-play-list_${VERSION}.zip"
-          (cd out && zip "../$ZIP" Jellyfin.Plugin.SmartPlayList.dll)
+          ZIP="auto-artist-playlists_${VERSION}.zip"
+          (cd out && zip "../$ZIP" Jellyfin.Plugin.AutoArtistPlaylists.dll)
           echo "ZIP=$ZIP" >> "$GITHUB_ENV"
           echo "CHECKSUM=$(md5sum "$ZIP" | cut -d' ' -f1)" >> "$GITHUB_ENV"
 

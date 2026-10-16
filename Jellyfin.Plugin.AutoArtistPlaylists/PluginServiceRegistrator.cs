@@ -2,7 +2,7 @@ using MediaBrowser.Controller;
 using MediaBrowser.Controller.Plugins;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Jellyfin.Plugin.SmartPlayList;
+namespace Jellyfin.Plugin.AutoArtistPlaylists;
 
 public class PluginServiceRegistrator : IPluginServiceRegistrator
 {

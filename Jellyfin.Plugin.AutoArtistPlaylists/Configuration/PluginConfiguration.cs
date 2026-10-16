@@ -1,7 +1,7 @@
 using System;
 using MediaBrowser.Model.Plugins;
 
-namespace Jellyfin.Plugin.SmartPlayList.Configuration;
+namespace Jellyfin.Plugin.AutoArtistPlaylists.Configuration;
 
 public class PluginConfiguration : BasePluginConfiguration
 {
