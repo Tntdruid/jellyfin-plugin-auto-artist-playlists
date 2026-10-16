@@ -6,7 +6,7 @@
     "overview": "When a song has been played at least 90%, it is marked as favorite and added to a private playlist named after the artist.",
     "owner": "Tntdruid",
     "category": "General",
-    "imageUrl": "",
+    "imageUrl": "https://raw.githubusercontent.com/Tntdruid/jellyfin-plugin-auto-artist-playlists/main/assets/thumb.png",
     "versions": [
       {
         "version": "1.1.0.0",

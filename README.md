@@ -1,4 +1,6 @@
-# Auto Artist Playlists for Jellyfin
+<p align="center"><img src="assets/logo.png" width="160" alt="Auto Artist Playlists logo"></p>
+
+<h1 align="center">Auto Artist Playlists for Jellyfin</h1>
 
 🇬🇧 [English](#english) · 🇩🇰 [Dansk](#dansk)
 

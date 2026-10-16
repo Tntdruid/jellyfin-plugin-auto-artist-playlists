@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#AA5CC3"/>
+      <stop offset="1" stop-color="#00A4DC"/>
+    </linearGradient>
+  </defs>
+  <rect width="512" height="512" rx="112" fill="url(#bg)"/>
+  <!-- playlist lines -->
+  <rect x="88" y="120" width="250" height="36" rx="18" fill="#fff" opacity="0.95"/>
+  <rect x="88" y="192" width="200" height="36" rx="18" fill="#fff" opacity="0.8"/>
+  <rect x="88" y="264" width="140" height="36" rx="18" fill="#fff" opacity="0.65"/>
+  <rect x="88" y="336" width="100" height="36" rx="18" fill="#fff" opacity="0.5"/>
+  <!-- heart -->
+  <path transform="translate(226 222) scale(0.56)" fill="#fff"
+        d="M256 448l-30-27C118 324 48 261 48 184 48 121 97 72 160 72c35 0 69 16 96 42 27-26 61-42 96-42 63 0 112 49 112 112 0 77-70 140-178 237z"/>
+  <!-- music note inside the heart -->
+  <g fill="#7E7FCF">
+    <rect x="370" y="290" width="14" height="78" rx="4"/>
+    <path d="M377 290c18 6 34 14 38 34-12-10-24-12-38-12z"/>
+    <ellipse cx="362" cy="370" rx="22" ry="16" transform="rotate(-22 362 370)"/>
+  </g>
+</svg>
