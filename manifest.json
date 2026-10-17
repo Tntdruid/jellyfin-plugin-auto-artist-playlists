@@ -10,7 +10,7 @@
     "versions": [
       {
         "version": "1.1.0.0",
-        "changelog": "See https://github.com/Tntdruid/jellyfin-plugin-auto-artist-playlists/releases/tag/v1.1.0",
+        "changelog": "- Renamed the plugin from \"Smart Play List\" to \"Auto Artist Playlists\"\n- Settings from 1.0 are moved over automatically\n- The artist playlist is also marked with a heart (can be turned off)\n- Settings page in English and Danish\n- If you installed 1.0 manually, delete the old \"Smart Play List_1.0.0.0\" folder",
         "targetAbi": "12.2.0.0",
         "sourceUrl": "https://github.com/Tntdruid/jellyfin-plugin-auto-artist-playlists/releases/download/v1.1.0/auto-artist-playlists_1.1.0.0.zip",
         "checksum": "d6f2baf4e73a6a5b3ac31095d4fb3290",
@@ -18,7 +18,7 @@
       },
       {
         "version": "1.0.0.0",
-        "changelog": "See https://github.com/Tntdruid/jellyfin-plugin-auto-artist-playlists/releases/tag/v1.0.0",
+        "changelog": "- First release\n- Songs played at least 90% get a heart and are added to a private playlist per artist\n- Settings: threshold, heart on/off, playlist name prefix and users",
         "targetAbi": "12.2.0.0",
         "sourceUrl": "https://github.com/Tntdruid/jellyfin-plugin-auto-artist-playlists/releases/download/v1.0.0/smart-play-list_1.0.0.0.zip",
         "checksum": "267d9c6f7bcb1fe8452f284b84291979",

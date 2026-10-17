@@ -30,6 +30,16 @@ jobs:
           TAG="${GITHUB_REF_NAME#v}"
           echo "VERSION=${TAG}.0" >> "$GITHUB_ENV"
 
+      - name: Changelog from CHANGELOG.md
+        run: |
+          TAG="${GITHUB_REF_NAME#v}"
+          awk -v v="$TAG" '$0 == "## " v { f = 1; next } /^## / { f = 0 } f' CHANGELOG.md | sed '/./,$!d' > notes.md
+          if [ -z "$(tr -d '[:space:]' < notes.md)" ]; then
+            echo "::error::CHANGELOG.md has no '## $TAG' section"
+            exit 1
+          fi
+          cat notes.md
+
       - name: Build
         run: |
           dotnet publish Jellyfin.Plugin.AutoArtistPlaylists -c Release -o out \
@@ -46,14 +56,14 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          gh release create "$GITHUB_REF_NAME" "$ZIP" --title "$GITHUB_REF_NAME" --generate-notes
+          gh release create "$GITHUB_REF_NAME" "$ZIP" --title "$GITHUB_REF_NAME" --notes-file notes.md
 
       - name: Update manifest.json
         run: |
           URL="https://github.com/${GITHUB_REPOSITORY}/releases/download/${GITHUB_REF_NAME}/${ZIP}"
           TIMESTAMP="$(date -u +%Y-%m-%dT%H:%M:%SZ)"
-          jq --arg v "$VERSION" --arg abi "$TARGET_ABI" --arg url "$URL" --arg sum "$CHECKSUM" --arg ts "$TIMESTAMP" --arg log "See https://github.com/${GITHUB_REPOSITORY}/releases/tag/${GITHUB_REF_NAME}" \
-            '.[0].versions = ([{version: $v, changelog: $log, targetAbi: $abi, sourceUrl: $url, checksum: $sum, timestamp: $ts}] + [.[0].versions[] | select(.version != $v)])' \
+          jq --arg v "$VERSION" --arg abi "$TARGET_ABI" --arg url "$URL" --arg sum "$CHECKSUM" --arg ts "$TIMESTAMP" --rawfile log notes.md \
+            '.[0].versions = ([{version: $v, changelog: ($log | rtrimstr("\n")), targetAbi: $abi, sourceUrl: $url, checksum: $sum, timestamp: $ts}] + [.[0].versions[] | select(.version != $v)])' \
             manifest.json > manifest.tmp && mv manifest.tmp manifest.json
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
