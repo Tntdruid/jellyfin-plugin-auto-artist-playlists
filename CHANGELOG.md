@@ -3,6 +3,13 @@
 The text under each version is shown in Jellyfin's plugin catalog and on the GitHub release.
 Add a new `## x.y.z` section before pushing the `vx.y.z` tag.
 
+## 1.2.0
+
+- New scheduled task "Import existing songs": builds artist playlists from songs you have already hearted (and, optionally, played)
+- Removing the heart from a song now takes it off the artist playlist (can be turned off)
+- A song you remove the heart from is not added back for 24 hours, even if it keeps playing
+- Translation guide in the README, so anyone can add a language to the settings page
+
 ## 1.1.0
 
 - Renamed the plugin from "Smart Play List" to "Auto Artist Playlists"

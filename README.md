@@ -16,6 +16,8 @@ When you have played at least **90 %** of a song (configurable):
 2. 🎵 It is added to a **private playlist named after the artist**, e.g. `Katy Perry`. The playlist is created if it doesn't exist, and songs are never added twice.
 3. ❤️ The artist playlist itself is marked as a favorite, so all of them show up under *Favorites*.
 
+Remove the heart from a song and it is taken off the artist playlist again. Already have a library full of hearts? Run the **import** once (see below) to build the playlists from what you have.
+
 The main artist is the first track artist, so `Katy Perry feat. Someone` goes to `Katy Perry`. If a track has no artist, the album artist is used. Playlists are private to each user.
 
 Works with any client that reports playback to the server (web, Jellyfin Media Player / Desktop, Finamp, Android, iOS, …).
@@ -57,10 +59,16 @@ Version 1.1 renamed the plugin from *Smart Play List* to *Auto Artist Playlists*
 | Threshold (%) | 90 | How much of a song must be played before it counts |
 | Mark the song with a heart | On | Marks the song as favorite |
 | Mark the artist playlist with a heart | On | Marks the artist playlist as favorite |
+| Remove the song when the heart is removed | On | Takes the song off the artist playlist. It is not added again for 24 hours |
+| Also import songs I have played | On | The import includes played songs, not only hearted ones |
 | Playlist name prefix | *(empty)* | E.g. `❤️ ` gives `❤️ Katy Perry` |
 | Users | All | Limit the plugin to selected users |
 
-The settings page is available in English and Danish and follows your Jellyfin display language.
+The settings page is available in English and Danish and follows your Jellyfin display language. [Help translate it](#translations).
+
+### Import existing songs
+
+Go to **Dashboard → Scheduled Tasks → Auto Artist Playlists → Import existing songs** and run it once. It adds the songs you have already hearted (and played songs, if enabled) to the artist playlists. It is safe to run again; songs are never added twice.
 
 ### Tips
 
@@ -86,6 +94,8 @@ Når du har hørt mindst **90 %** af en sang (kan ændres):
 1. ❤️ Sangen markeres som **favorit** for dig.
 2. 🎵 Den tilføjes til en **privat playliste med kunstnerens navn**, f.eks. `Katy Perry`. Playlisten oprettes, hvis den ikke findes, og sange tilføjes aldrig to gange.
 3. ❤️ Selve kunstner-playlisten markeres som favorit, så de alle samles under *Favoritter*.
+
+Fjerner du hjertet fra en sang, bliver den taget af kunstner-playlisten igen. Har du allerede mange sange med hjerte? Kør **importen** én gang (se nedenfor) for at bygge playlisterne ud fra dem.
 
 Hovedkunstneren er den første kunstner på nummeret, så `Katy Perry feat. Nogen` havner på `Katy Perry`. Har nummeret ingen kunstner, bruges albumkunstneren. Playlisterne er private for hver bruger.
 
@@ -128,10 +138,16 @@ I version 1.1 skiftede pluginet navn fra *Smart Play List* til *Auto Artist Play
 | Grænse (%) | 90 | Hvor meget af sangen der skal høres, før den tæller |
 | Markér sangen med hjerte | Til | Markerer sangen som favorit |
 | Markér kunstner-playlisten med hjerte | Til | Markerer kunstner-playlisten som favorit |
+| Fjern sangen, når hjertet fjernes | Til | Tager sangen af kunstner-playlisten. Den tilføjes ikke igen de næste 24 timer |
+| Importér også sange, jeg har hørt | Til | Importen tager også hørte sange med, ikke kun dem med hjerte |
 | Præfiks på playlistenavn | *(tom)* | F.eks. `❤️ ` giver `❤️ Katy Perry` |
 | Brugere | Alle | Begræns pluginet til udvalgte brugere |
 
-Indstillingssiden findes på dansk og engelsk og følger dit sprog i Jellyfin.
+Indstillingssiden findes på dansk og engelsk og følger dit sprog i Jellyfin. [Hjælp med at oversætte](#translations).
+
+### Importér eksisterende sange
+
+Gå til **Dashboard → Planlagte opgaver → Auto Artist Playlists → Import existing songs** og kør den én gang. Den lægger de sange, du allerede har givet hjerte (og hørte sange, hvis det er slået til), på kunstner-playlisterne. Den kan trygt køres igen; sange tilføjes aldrig to gange.
 
 ### Tips
 
@@ -145,6 +161,18 @@ dotnet publish Jellyfin.Plugin.AutoArtistPlaylists -c Release -o out
 ```
 
 Kopiér `out/Jellyfin.Plugin.AutoArtistPlaylists.dll` ind i plugin-mappen.
+
+---
+
+## Translations
+
+The settings page follows the user's Jellyfin display language. Adding a language takes one block of text:
+
+1. Open [`Configuration/configPage.html`](Jellyfin.Plugin.AutoArtistPlaylists/Configuration/configPage.html).
+2. In `AutoArtistPlaylistsStrings`, copy the `en` block and change its key to the two-letter language code, e.g. `sv`, `nb` or `de`.
+3. Translate the texts and open a pull request.
+
+Languages without a block fall back to English.
 
 ---
 

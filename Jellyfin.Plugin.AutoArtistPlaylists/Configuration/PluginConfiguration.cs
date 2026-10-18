@@ -21,6 +21,16 @@ public class PluginConfiguration : BasePluginConfiguration
     public bool MarkPlaylistAsFavorite { get; set; } = true;
 
     /// <summary>
+    /// Gets or sets a value indicating whether a song is removed from its artist playlist when the heart is removed.
+    /// </summary>
+    public bool RemoveWhenUnfavorited { get; set; } = true;
+
+    /// <summary>
+    /// Gets or sets a value indicating whether the import task also includes played songs, not only hearted ones.
+    /// </summary>
+    public bool ImportPlayedSongs { get; set; } = true;
+
+    /// <summary>
     /// Gets or sets an optional text put in front of the artist name, e.g. "❤️ ".
     /// </summary>
     public string PlaylistPrefix { get; set; } = string.Empty;

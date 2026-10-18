@@ -32,10 +32,28 @@
                         </label>
                     </div>
 
+                    <div class="checkboxContainer checkboxContainer-withDescription">
+                        <label class="emby-checkbox-label">
+                            <input id="RemoveWhenUnfavorited" name="RemoveWhenUnfavorited" type="checkbox" is="emby-checkbox" />
+                            <span data-i18n="removeUnfavorited"></span>
+                        </label>
+                        <div class="fieldDescription checkboxFieldDescription" data-i18n="removeUnfavoritedHelp"></div>
+                    </div>
+
                     <div class="inputContainer">
                         <label class="inputLabel inputLabelUnfocused" for="PlaylistPrefix" data-i18n="prefix"></label>
                         <input id="PlaylistPrefix" name="PlaylistPrefix" type="text" is="emby-input" />
                         <div class="fieldDescription" data-i18n="prefixHelp"></div>
+                    </div>
+
+                    <h3 data-i18n="import"></h3>
+                    <div class="fieldDescription" data-i18n="importHelp"></div>
+                    <div class="checkboxContainer checkboxContainer-withDescription">
+                        <label class="emby-checkbox-label">
+                            <input id="ImportPlayedSongs" name="ImportPlayedSongs" type="checkbox" is="emby-checkbox" />
+                            <span data-i18n="importPlayed"></span>
+                        </label>
+                        <div class="fieldDescription checkboxFieldDescription" data-i18n="importPlayedHelp"></div>
                     </div>
 
                     <h3 data-i18n="users"></h3>
@@ -63,6 +81,12 @@
                     thresholdHelp: 'How much of the song must be played before it counts. Default is 90.',
                     markSong: 'Mark the song with a heart (favorite)',
                     markPlaylist: 'Mark the artist playlist with a heart (favorite)',
+                    removeUnfavorited: 'Remove the song from the playlist when the heart is removed',
+                    removeUnfavoritedHelp: 'A song you remove the heart from is not added again for 24 hours, even if you keep listening to it.',
+                    import: 'Import existing songs',
+                    importHelp: 'Go to Dashboard → Scheduled Tasks → Auto Artist Playlists → "Import existing songs" and run it once to add songs you already have hearted to the artist playlists.',
+                    importPlayed: 'Also import songs I have played',
+                    importPlayedHelp: 'Played songs are imported too and get a heart. Turn off to import only hearted songs.',
                     prefix: 'Playlist name prefix',
                     prefixHelp: 'Optional, e.g. "❤️ " gives "❤️ Katy Perry". Empty gives just "Katy Perry".',
                     users: 'Users',
@@ -75,6 +99,12 @@
                     thresholdHelp: 'Hvor stor en del af sangen skal afspilles, før den tæller. Standard er 90.',
                     markSong: 'Markér sangen med hjerte (favorit)',
                     markPlaylist: 'Markér kunstner-playlisten med hjerte (favorit)',
+                    removeUnfavorited: 'Fjern sangen fra playlisten, når hjertet fjernes',
+                    removeUnfavoritedHelp: 'En sang, du fjerner hjertet fra, bliver ikke tilføjet igen de næste 24 timer, selvom du bliver ved med at høre den.',
+                    import: 'Importér eksisterende sange',
+                    importHelp: 'Gå til Dashboard → Planlagte opgaver → Auto Artist Playlists → "Import existing songs" og kør den én gang for at lægge de sange, du allerede har givet hjerte, på kunstner-playlisterne.',
+                    importPlayed: 'Importér også sange, jeg har hørt',
+                    importPlayedHelp: 'Hørte sange importeres også og får et hjerte. Slå fra for kun at importere sange med hjerte.',
                     prefix: 'Præfiks på playlistenavn',
                     prefixHelp: 'Valgfrit, f.eks. "❤️ " giver "❤️ Katy Perry". Tomt giver bare "Katy Perry".',
                     users: 'Brugere',
@@ -117,6 +147,8 @@
                         page.querySelector('#ThresholdPercent').value = config.ThresholdPercent;
                         page.querySelector('#MarkAsFavorite').checked = config.MarkAsFavorite;
                         page.querySelector('#MarkPlaylistAsFavorite').checked = config.MarkPlaylistAsFavorite;
+                        page.querySelector('#RemoveWhenUnfavorited').checked = config.RemoveWhenUnfavorited;
+                        page.querySelector('#ImportPlayedSongs').checked = config.ImportPlayedSongs;
                         page.querySelector('#PlaylistPrefix').value = config.PlaylistPrefix || '';
 
                         var list = page.querySelector('#UserList');
@@ -153,6 +185,8 @@
                         config.ThresholdPercent = isNaN(threshold) ? 90 : Math.min(100, Math.max(1, threshold));
                         config.MarkAsFavorite = form.querySelector('#MarkAsFavorite').checked;
                         config.MarkPlaylistAsFavorite = form.querySelector('#MarkPlaylistAsFavorite').checked;
+                        config.RemoveWhenUnfavorited = form.querySelector('#RemoveWhenUnfavorited').checked;
+                        config.ImportPlayedSongs = form.querySelector('#ImportPlayedSongs').checked;
                         config.PlaylistPrefix = form.querySelector('#PlaylistPrefix').value;
                         config.EnabledUserIds = Array.prototype.map.call(
                             form.querySelectorAll('.chkUser:checked'),

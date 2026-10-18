@@ -8,6 +8,8 @@ public class PluginServiceRegistrator : IPluginServiceRegistrator
 {
     public void RegisterServices(IServiceCollection serviceCollection, IServerApplicationHost applicationHost)
     {
+        serviceCollection.AddSingleton<ArtistPlaylistService>();
         serviceCollection.AddHostedService<PlaybackListener>();
+        serviceCollection.AddHostedService<UnfavoriteListener>();
     }
 }
