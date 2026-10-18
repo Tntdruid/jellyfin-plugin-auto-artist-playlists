@@ -28,7 +28,7 @@ public class PluginConfiguration : BasePluginConfiguration
     /// <summary>
     /// Gets or sets a value indicating whether the import task also includes played songs, not only hearted ones.
     /// </summary>
-    public bool ImportPlayedSongs { get; set; } = true;
+    public bool ImportPlayedSongs { get; set; }
 
     /// <summary>
     /// Gets or sets an optional text put in front of the artist name, e.g. "❤️ ".

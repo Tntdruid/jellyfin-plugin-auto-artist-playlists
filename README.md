@@ -60,7 +60,7 @@ Version 1.1 renamed the plugin from *Smart Play List* to *Auto Artist Playlists*
 | Mark the song with a heart | On | Marks the song as favorite |
 | Mark the artist playlist with a heart | On | Marks the artist playlist as favorite |
 | Remove the song when the heart is removed | On | Takes the song off the artist playlist. It is not added again for 24 hours |
-| Also import songs I have played | On | The import includes played songs, not only hearted ones |
+| Also import songs I have played | Off | The import also includes every song Jellyfin has marked as played (your whole history) |
 | Playlist name prefix | *(empty)* | E.g. `❤️ ` gives `❤️ Katy Perry` |
 | Users | All | Limit the plugin to selected users |
 
@@ -68,7 +68,7 @@ The settings page is available in English and Danish and follows your Jellyfin d
 
 ### Import existing songs
 
-Go to **Dashboard → Scheduled Tasks → Auto Artist Playlists → Import existing songs** and run it once. It adds the songs you have already hearted (and played songs, if enabled) to the artist playlists. It is safe to run again; songs are never added twice.
+Go to **Dashboard → Scheduled Tasks → Auto Artist Playlists → Import existing songs** and run it once. It adds the songs you have already hearted to the artist playlists. Turn on *Also import songs I have played* first if you also want your whole play history imported. It is safe to run again; songs are never added twice.
 
 ### Tips
 
@@ -139,7 +139,7 @@ I version 1.1 skiftede pluginet navn fra *Smart Play List* til *Auto Artist Play
 | Markér sangen med hjerte | Til | Markerer sangen som favorit |
 | Markér kunstner-playlisten med hjerte | Til | Markerer kunstner-playlisten som favorit |
 | Fjern sangen, når hjertet fjernes | Til | Tager sangen af kunstner-playlisten. Den tilføjes ikke igen de næste 24 timer |
-| Importér også sange, jeg har hørt | Til | Importen tager også hørte sange med, ikke kun dem med hjerte |
+| Importér også sange, jeg har hørt | Fra | Importen tager også alle sange med, som Jellyfin har markeret som afspillet (hele din historik) |
 | Præfiks på playlistenavn | *(tom)* | F.eks. `❤️ ` giver `❤️ Katy Perry` |
 | Brugere | Alle | Begræns pluginet til udvalgte brugere |
 
@@ -147,7 +147,7 @@ Indstillingssiden findes på dansk og engelsk og følger dit sprog i Jellyfin. [
 
 ### Importér eksisterende sange
 
-Gå til **Dashboard → Planlagte opgaver → Auto Artist Playlists → Import existing songs** og kør den én gang. Den lægger de sange, du allerede har givet hjerte (og hørte sange, hvis det er slået til), på kunstner-playlisterne. Den kan trygt køres igen; sange tilføjes aldrig to gange.
+Gå til **Dashboard → Planlagte opgaver → Auto Artist Playlists → Import existing songs** og kør den én gang. Den lægger de sange, du allerede har givet hjerte, på kunstner-playlisterne. Slå *Importér også sange, jeg har hørt* til først, hvis hele din afspilningshistorik også skal med. Den kan trygt køres igen; sange tilføjes aldrig to gange.
 
 ### Tips
 

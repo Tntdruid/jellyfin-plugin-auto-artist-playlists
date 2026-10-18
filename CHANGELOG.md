@@ -5,7 +5,7 @@ Add a new `## x.y.z` section before pushing the `vx.y.z` tag.
 
 ## 1.2.0
 
-- New scheduled task "Import existing songs": builds artist playlists from songs you have already hearted (and, optionally, played)
+- New scheduled task "Import existing songs": builds artist playlists from songs you have already hearted. Optionally also every song you have played (off by default)
 - Removing the heart from a song now takes it off the artist playlist (can be turned off)
 - A song you remove the heart from is not added back for 24 hours, even if it keeps playing
 - Translation guide in the README, so anyone can add a language to the settings page
