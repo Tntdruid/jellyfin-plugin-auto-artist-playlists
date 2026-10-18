@@ -10,7 +10,7 @@
     "versions": [
       {
         "version": "1.2.0.0",
-        "changelog": "- New scheduled task \"Import existing songs\": builds artist playlists from songs you have already hearted. Optionally also every song you have played (off by default)\n- Removing the heart from a song now takes it off the artist playlist (can be turned off)\n- A song you remove the heart from is not added back for 24 hours, even if it keeps playing\n- Translation guide in the README, so anyone can add a language to the settings page\n",
+        "changelog": "- New scheduled task \"Import existing songs\": builds artist playlists from songs you have already hearted. Optionally also every song you have played (off by default)\n- Removing the heart from a song now takes it off the artist playlist (can be turned off)\n- A song you remove the heart from is not added back for 24 hours, even if it keeps playing\n- Translation guide in the README, so anyone can add a language to the settings page",
         "targetAbi": "12.2.0.0",
         "sourceUrl": "https://github.com/Tntdruid/jellyfin-plugin-auto-artist-playlists/releases/download/v1.2.0/auto-artist-playlists_1.2.0.0.zip",
         "checksum": "c8087841a57fa30f5a7919bcc96c30af",

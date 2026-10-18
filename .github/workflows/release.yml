@@ -63,7 +63,7 @@ jobs:
           URL="https://github.com/${GITHUB_REPOSITORY}/releases/download/${GITHUB_REF_NAME}/${ZIP}"
           TIMESTAMP="$(date -u +%Y-%m-%dT%H:%M:%SZ)"
           jq --arg v "$VERSION" --arg abi "$TARGET_ABI" --arg url "$URL" --arg sum "$CHECKSUM" --arg ts "$TIMESTAMP" --rawfile log notes.md \
-            '.[0].versions = ([{version: $v, changelog: ($log | rtrimstr("\n")), targetAbi: $abi, sourceUrl: $url, checksum: $sum, timestamp: $ts}] + [.[0].versions[] | select(.version != $v)])' \
+            '.[0].versions = ([{version: $v, changelog: ($log | sub("\\s+$"; "")), targetAbi: $abi, sourceUrl: $url, checksum: $sum, timestamp: $ts}] + [.[0].versions[] | select(.version != $v)])' \
             manifest.json > manifest.tmp && mv manifest.tmp manifest.json
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
