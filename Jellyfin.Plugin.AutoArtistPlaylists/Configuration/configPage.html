@@ -78,7 +78,7 @@
                 en: {
                     intro: 'When a song has been played at least the chosen percentage, it is added to a private playlist named after the artist and marked with a heart.',
                     threshold: 'Threshold (%)',
-                    thresholdHelp: 'How much of the song must be played before it counts. Default is 90.',
+                    thresholdHelp: 'How much of the song must be played before it counts. Default is 70.',
                     markSong: 'Mark the song with a heart (favorite)',
                     markPlaylist: 'Mark the artist playlist with a heart (favorite)',
                     removeUnfavorited: 'Remove the song from the playlist when the heart is removed',
@@ -96,7 +96,7 @@
                 da: {
                     intro: 'Når en sang er hørt mindst den valgte procentdel, tilføjes den til en privat playliste med kunstnerens navn og markeres med et hjerte.',
                     threshold: 'Grænse (%)',
-                    thresholdHelp: 'Hvor stor en del af sangen skal afspilles, før den tæller. Standard er 90.',
+                    thresholdHelp: 'Hvor stor en del af sangen skal afspilles, før den tæller. Standard er 70.',
                     markSong: 'Markér sangen med hjerte (favorit)',
                     markPlaylist: 'Markér kunstner-playlisten med hjerte (favorit)',
                     removeUnfavorited: 'Fjern sangen fra playlisten, når hjertet fjernes',
@@ -182,7 +182,7 @@
                     Dashboard.showLoadingMsg();
                     ApiClient.getPluginConfiguration(AutoArtistPlaylistsConfig.pluginUniqueId).then(function (config) {
                         var threshold = parseInt(form.querySelector('#ThresholdPercent').value, 10);
-                        config.ThresholdPercent = isNaN(threshold) ? 90 : Math.min(100, Math.max(1, threshold));
+                        config.ThresholdPercent = isNaN(threshold) ? 70 : Math.min(100, Math.max(1, threshold));
                         config.MarkAsFavorite = form.querySelector('#MarkAsFavorite').checked;
                         config.MarkPlaylistAsFavorite = form.querySelector('#MarkPlaylistAsFavorite').checked;
                         config.RemoveWhenUnfavorited = form.querySelector('#RemoveWhenUnfavorited').checked;

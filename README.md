@@ -10,7 +10,7 @@
 
 A Jellyfin plugin that remembers the songs you actually listen to.
 
-When you have played at least **90 %** of a song (configurable):
+When you have played at least **70 %** of a song (configurable):
 
 1. ❤️ The song is marked as a **favorite** for you.
 2. 🎵 It is added to a **private playlist named after the artist**, e.g. `Katy Perry`. The playlist is created if it doesn't exist, and songs are never added twice.
@@ -56,7 +56,7 @@ Version 1.1 renamed the plugin from *Smart Play List* to *Auto Artist Playlists*
 
 | Setting | Default | Description |
 |---|---|---|
-| Threshold (%) | 90 | How much of a song must be played before it counts |
+| Threshold (%) | 70 | How much of a song must be played before it counts |
 | Mark the song with a heart | On | Marks the song as favorite |
 | Mark the artist playlist with a heart | On | Marks the artist playlist as favorite |
 | Remove the song when the heart is removed | On | Takes the song off the artist playlist. It is not added again for 24 hours |
@@ -89,7 +89,7 @@ Copy `out/Jellyfin.Plugin.AutoArtistPlaylists.dll` into the plugin folder.
 
 Et Jellyfin-plugin, der husker de sange, du faktisk hører.
 
-Når du har hørt mindst **90 %** af en sang (kan ændres):
+Når du har hørt mindst **70 %** af en sang (kan ændres):
 
 1. ❤️ Sangen markeres som **favorit** for dig.
 2. 🎵 Den tilføjes til en **privat playliste med kunstnerens navn**, f.eks. `Katy Perry`. Playlisten oprettes, hvis den ikke findes, og sange tilføjes aldrig to gange.
@@ -135,7 +135,7 @@ I version 1.1 skiftede pluginet navn fra *Smart Play List* til *Auto Artist Play
 
 | Indstilling | Standard | Beskrivelse |
 |---|---|---|
-| Grænse (%) | 90 | Hvor meget af sangen der skal høres, før den tæller |
+| Grænse (%) | 70 | Hvor meget af sangen der skal høres, før den tæller |
 | Markér sangen med hjerte | Til | Markerer sangen som favorit |
 | Markér kunstner-playlisten med hjerte | Til | Markerer kunstner-playlisten som favorit |
 | Fjern sangen, når hjertet fjernes | Til | Tager sangen af kunstner-playlisten. Den tilføjes ikke igen de næste 24 timer |

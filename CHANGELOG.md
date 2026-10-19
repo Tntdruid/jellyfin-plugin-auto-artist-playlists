@@ -3,6 +3,11 @@
 The text under each version is shown in Jellyfin's plugin catalog and on the GitHub release.
 Add a new `## x.y.z` section before pushing the `vx.y.z` tag.
 
+## 1.2.1
+
+- The default threshold for new installs is now 70% instead of 90%
+- Existing installs keep their current threshold. You can change it in the plugin settings
+
 ## 1.2.0
 
 - New scheduled task "Import existing songs": builds artist playlists from songs you have already hearted. Optionally also every song you have played (off by default)

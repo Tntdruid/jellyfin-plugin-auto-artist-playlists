@@ -8,7 +8,7 @@ public class PluginConfiguration : BasePluginConfiguration
     /// <summary>
     /// Gets or sets how much of a song (in percent) must be played before it counts as listened.
     /// </summary>
-    public int ThresholdPercent { get; set; } = 90;
+    public int ThresholdPercent { get; set; } = 70;
 
     /// <summary>
     /// Gets or sets a value indicating whether the song is marked as favorite (heart).
