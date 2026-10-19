@@ -9,6 +9,14 @@
     "imageUrl": "https://raw.githubusercontent.com/Tntdruid/jellyfin-plugin-auto-artist-playlists/main/assets/thumb.png",
     "versions": [
       {
+        "version": "1.3.0.0",
+        "changelog": "- Settings page now also in Swedish, Norwegian, Finnish and Icelandic\n- Norwegian Nynorsk users get the Norwegian (Bokmål) texts",
+        "targetAbi": "12.2.0.0",
+        "sourceUrl": "https://github.com/Tntdruid/jellyfin-plugin-auto-artist-playlists/releases/download/v1.3.0/auto-artist-playlists_1.3.0.0.zip",
+        "checksum": "c13c7038158bc513c0cdecabbbfaa3a0",
+        "timestamp": "2026-10-19T19:10:53Z"
+      },
+      {
         "version": "1.2.1.0",
         "changelog": "- The default threshold for new installs is now 70% instead of 90%\n- Existing installs keep their current threshold. You can change it in the plugin settings",
         "targetAbi": "12.2.0.0",
