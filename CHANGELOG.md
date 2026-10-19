@@ -3,6 +3,11 @@
 The text under each version is shown in Jellyfin's plugin catalog and on the GitHub release.
 Add a new `## x.y.z` section before pushing the `vx.y.z` tag.
 
+## 1.3.0
+
+- Settings page now also in Swedish, Norwegian, Finnish and Icelandic
+- Norwegian Nynorsk users get the Norwegian (Bokmål) texts
+
 ## 1.2.1
 
 - The default threshold for new installs is now 70% instead of 90%

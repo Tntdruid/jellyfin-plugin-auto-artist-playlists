@@ -64,7 +64,7 @@ Version 1.1 renamed the plugin from *Smart Play List* to *Auto Artist Playlists*
 | Playlist name prefix | *(empty)* | E.g. `❤️ ` gives `❤️ Katy Perry` |
 | Users | All | Limit the plugin to selected users |
 
-The settings page is available in English and Danish and follows your Jellyfin display language. [Help translate it](#translations).
+The settings page is available in English, Danish, Swedish, Norwegian, Finnish and Icelandic and follows your Jellyfin display language. [Help translate it](#translations).
 
 ### Import existing songs
 
@@ -143,7 +143,7 @@ I version 1.1 skiftede pluginet navn fra *Smart Play List* til *Auto Artist Play
 | Præfiks på playlistenavn | *(tom)* | F.eks. `❤️ ` giver `❤️ Katy Perry` |
 | Brugere | Alle | Begræns pluginet til udvalgte brugere |
 
-Indstillingssiden findes på dansk og engelsk og følger dit sprog i Jellyfin. [Hjælp med at oversætte](#translations).
+Indstillingssiden findes på engelsk, dansk, svensk, norsk, finsk og islandsk og følger dit sprog i Jellyfin. [Hjælp med at oversætte](#translations).
 
 ### Importér eksisterende sange
 
@@ -166,10 +166,12 @@ Kopiér `out/Jellyfin.Plugin.AutoArtistPlaylists.dll` ind i plugin-mappen.
 
 ## Translations
 
-The settings page follows the user's Jellyfin display language. Adding a language takes one block of text:
+The settings page follows the user's Jellyfin display language. Available: English (`en`), Danish (`da`), Swedish (`sv`), Norwegian (`nb`, also used for `nn`), Finnish (`fi`) and Icelandic (`is`). Fixes from native speakers are very welcome.
+
+Adding a language takes one block of text:
 
 1. Open [`Configuration/configPage.html`](Jellyfin.Plugin.AutoArtistPlaylists/Configuration/configPage.html).
-2. In `AutoArtistPlaylistsStrings`, copy the `en` block and change its key to the two-letter language code, e.g. `sv`, `nb` or `de`.
+2. In `AutoArtistPlaylistsStrings`, copy the `en` block and change its key to the two-letter language code, e.g. `de`, `fr` or `nl`.
 3. Translate the texts and open a pull request.
 
 Languages without a block fall back to English.
